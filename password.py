@@ -7,8 +7,17 @@ class User:
         self.last_name = last_name
         self.username = username
         self.password = password
-        self.credentials = dict()
+        self.user_credentials = dict()
     
+    def addUser(self):
+        """Add a new user account"""
+        self.user_credentials.update({
+            'first_name' : self.first_name,
+            'last_name' : self.last_name,
+            'username' : self.username,
+            'password' : self.password
+        })
+
     def save(self):
         """Save user account"""
         self.user_accounts[self.username] = {
@@ -21,29 +30,15 @@ class User:
     def getByUserName(self, username):
         """Get user by username"""
         return self.user_accounts.get(username)
-    
-    def addCredential(self, credential):
-        """Add a new user credential"""
-        self.credentials.update({
-            credential.site : {
-                'username' : credential.username,
-                'password' : credential.password
-            }
-        })
-    
-    def deleteCredential(self, credential):
-        """Delete an existing user credential"""
-        self.credentials.clear({
-            credential.site : {
-                'username' : credential.username,
-                'password' : credential.password
-            }
-        })
 
-    def viewCredentials(self, credential):
-        """View all credentials"""
-        for credential in self.credentials:
-            return credential
+    def viewUserAccounts(self):
+        """View all user accounts"""
+        for self.user_credentials in self.user_accounts:
+            return self.user_credentials
+    
+    def deleteUser(self):
+        """Delete an existing user account"""
+        self.user_credentials.clear()
 
 
 class Credentials:
@@ -64,5 +59,18 @@ class Credentials:
 
     def createNewPassword(self, new_password):
         """Create a new password"""
-        Password = input(new_password)
-        return Password
+        new_password = input("Enter new password:")
+        return new_password
+
+    def addCredential(self, credential):
+        """Add a new user credential"""
+        self.credentials.update({
+            credential.site : {
+                'username' : credential.username,
+                'password' : credential.password
+            }
+        })
+
+    def deleteCredential(self, credential):
+        """Delete an existing credential"""
+        ddd
