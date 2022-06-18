@@ -10,15 +10,6 @@ class User:
         self.password = password
         self.user_credentials = dict()
     
-    def addUser(self):
-        """Add a new user account"""
-        self.user_credentials.update({
-            'first_name' : self.first_name,
-            'last_name' : self.last_name,
-            'username' : self.username,
-            'password' : self.password
-        })
-
     def save(self):
         """Save user account"""
         self.user_accounts[self.username] = {
@@ -26,20 +17,35 @@ class User:
             'last_name': self.last_name,
             'password': self.password
         }
-        return self
+        return True
     
     def getByUserName(self, username):
         """Get user by username"""
         return self.user_accounts.get(username)
 
-    def viewUserAccounts(self):
+    def listUserAccounts(self):
         """View all user accounts"""
-        for self.user_credentials in self.user_accounts:
-            return self.user_credentials
+        return self.user_accounts.items()
+
+    def addCredential(self, credential):
+        """Add a new user credential"""
+        self.user_credentials.update({
+            credential.site : {
+                'username' : credential.username,
+                'password' : credential.password
+            }
+        })
+        return True
+
+    def deleteCredential(self, site_name):
+        """Delete an existing credential"""
+        self.user_credentials.pop(site_name)
+        return True
     
-    def deleteUser(self):
+    def deleteUser(self, username):
         """Delete an existing user account"""
-        self.user_credentials.clear()
+        self.user_accounts.pop(username)
+        return True
 
 
 class Credentials:
@@ -48,36 +54,17 @@ class Credentials:
         self.site = site
         self.username = username
         self.password = password
-        self.credentials = dict()
     
-    def createRandomPassword(self, length):
-        self.length = length
+    def createRandomPassword(self, length=10):
         """create a random password"""
         import random
         import string
         password_letters = string.ascii_lowercase
-        random_password = ''.join(random.choice(password_letters) for i in range(self.length))
+        random_password = ''.join(random.choice(password_letters) for i in range(length))
         return random_password
 
     def createNewPassword(self, new_password):
         """Create a new password"""
-        new_password = input("Enter new password:")
-        return new_password
+        self.password = new_password
+        return True
 
-    def addCredential(self, credential):
-        """Add a new user credential"""
-        self.credentials.update({
-            credential.site : {
-                'username' : credential.username,
-                'password' : credential.password
-            }
-        })
-
-    def deleteCredential(self, credential):
-        """Delete an existing credential"""
-        self.credentials.clear({
-            credential.site : {
-                'username' : self.username,
-                'password' : self.password
-            }
-        })
