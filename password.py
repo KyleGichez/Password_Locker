@@ -1,6 +1,7 @@
 class User:
     """Initialize credentials instances"""
     user_accounts = dict()
+
     def __init__(self, first_name, last_name, username, password):
         """Initialize user class instances"""
         self.first_name = first_name
@@ -47,6 +48,7 @@ class Credentials:
         self.site = site
         self.username = username
         self.password = password
+        self.credentials = dict()
     
     def createRandomPassword(self, length):
         self.length = length
@@ -73,4 +75,9 @@ class Credentials:
 
     def deleteCredential(self, credential):
         """Delete an existing credential"""
-        ddd
+        self.credentials.clear({
+            credential.site : {
+                'username' : self.username,
+                'password' : self.password
+            }
+        })
