@@ -29,13 +29,11 @@ class User:
 
     def addCredential(self, credential):
         """Add a new user credential"""
-        self.user_credentials.update({
-            credential.site : {
-                'username' : credential.username,
-                'password' : credential.password
-            }
-        })
-        return True
+        self.user_credentials[credential.site] = {
+            'username' : credential.username,
+            'password' : credential.password
+        }
+        return self.user_credentials.get(credential.site)
 
     def deleteCredential(self, site_name):
         """Delete an existing credential"""
