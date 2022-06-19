@@ -9,7 +9,7 @@ class User:
         self.username = username
         self.password = password
         self.user_credentials = dict()
-    
+
     def save(self):
         """Save user account"""
         self.user_accounts[self.username] = {
@@ -18,7 +18,7 @@ class User:
             'password': self.password
         }
         return True
-    
+
     def getByUserName(self, username):
         """Get user by username"""
         return self.user_accounts.get(username)
@@ -39,7 +39,11 @@ class User:
         """Delete an existing credential"""
         self.user_credentials.pop(site_name)
         return True
-    
+
+    def listCredentials(self):
+        """List all user credentials"""
+        return [f"Your {credential[0]} username for {self.first_name} is {credential[1].get('username')}." for credential in self.user_credentials.items() if credential]
+
     def deleteUser(self, username):
         """Delete an existing user account"""
         self.user_accounts.pop(username)
@@ -52,14 +56,15 @@ class Credentials:
         self.site = site
         self.username = username
         self.password = password
-    
+
     def createRandomPassword(self, length=10):
         """create a random password"""
         import random
         import string
         password_letters = string.ascii_lowercase
         random_password = ''.join(random.choice(password_letters) for i in range(length))
-        return random_password
+        self.password = random_password
+        return self.password
 
     def createNewPassword(self, new_password):
         """Create a new password"""

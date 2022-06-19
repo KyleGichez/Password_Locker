@@ -10,19 +10,16 @@ class TestUser(unittest.TestCase):
         results = self.user1.save()
         self.assertTrue(results)
 
+    def tearDown(self):
+        """tearDown method"""
+        self.user1.user_accounts = dict()
+
     def test_init(self):
         """Test initialize user account credentials"""
         self.assertEqual(self.user1.first_name, "Aklisiya")
         self.assertEqual(self.user1.last_name, "Eshetu")
         self.assertEqual(self.user1.username, "beautifulaklisiya")
         self.assertEqual(self.user1.password, "sweetbabyboo")
-
-    # def test_saveUser(self):
-    #     """Test add a new user account"""
-        
-    def tearDown(self):
-        """tearDown method"""
-        self.user1.user_accounts = dict()
 
     def test_viewAccounts(self):
         """Test view all user accounts"""
@@ -59,5 +56,10 @@ class TestCredentials(unittest.TestCase):
         """Create a new user credential"""
         self.user1 = Credentials("Tiktok", "aklisiyababy", "eshetuhabesha")
 
+    def test_init(self):
+        """Test initialize user self credentials"""
+        self.assertEqual(self.user1.site, "Tiktok")
+        self.assertEqual(self.user1.username, "aklisiyababy")
+        self.assertEqual(self.user1.password, "eshetuhabesha")
 if __name__ == '__main__':
     unittest.main()
