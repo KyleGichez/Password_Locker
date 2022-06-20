@@ -38,6 +38,14 @@ class TestUser(unittest.TestCase):
         self.user1.addCredential(credential_1)
         self.assertEqual(len(self.user1.user_credentials.items()), 1)
 
+    def test_listCredentials(self):
+        """Test list all user credentials"""
+        credential_1 = Credentials("Tiktok", "eshetubabyhabesha", "sexybaby")
+        self.user1.addCredential(credential_1)
+        result = self.user1.user_credentials.items()
+        self.user1.listCredentials()
+        self.assertTrue(result)
+
     def test_deleteCredential(self):
         """Test delete an existing credential"""
         credential_1 = Credentials("Tiktok", "eshetubabyhabesha", "sexybaby")
@@ -57,9 +65,24 @@ class TestCredentials(unittest.TestCase):
         self.user1 = Credentials("Tiktok", "aklisiyababy", "eshetuhabesha")
 
     def test_init(self):
-        """Test initialize user self credentials"""
+        """Test initialize user credentials"""
         self.assertEqual(self.user1.site, "Tiktok")
         self.assertEqual(self.user1.username, "aklisiyababy")
         self.assertEqual(self.user1.password, "eshetuhabesha")
+
+    def test_randomPassword(self):
+        """Test random password"""
+        random_password = self.user1.password
+        self.assertEqual(self.user1.password, random_password)
+
+    def test_newPassword(self):
+        """Test new password"""
+        self.user1 = Credentials("Tiktok", "aklisiyababy", "eshetuhabesha")
+        self.user1 = Credentials("Tiktok", "aklisiyababy", "babyaklisiya1")
+        new_password = self.user1.password
+        self.assertEqual(new_password, "babyaklisiya1")
+
+
+
 if __name__ == '__main__':
     unittest.main()
