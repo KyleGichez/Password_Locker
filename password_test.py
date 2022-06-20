@@ -77,11 +77,9 @@ class TestCredentials(unittest.TestCase):
 
     def test_newPassword(self):
         """Test new password"""
-        self.user1 = Credentials("Tiktok", "aklisiyababy", "eshetuhabesha")
         self.user1 = Credentials("Tiktok", "aklisiyababy", "babyaklisiya1")
         new_password = self.user1.password
         self.assertEqual(new_password, "babyaklisiya1")
-
 
 
 if __name__ == '__main__':
