@@ -24,15 +24,15 @@ class TestUser(unittest.TestCase):
     def test_addUser(self):
         """Test add a new user account"""
         self.user1 = User("Aklisiya", "Eshetu", "beautifulaklisiya", "sweetbabyboo")
-        self.assertEqual(self.user1.first_name, "Aklisiya")
-        self.assertEqual(self.user1.last_name, "Eshetu")
-        self.assertEqual(self.user1.username, "beautifulaklisiya")
-        self.assertEqual(self.user1.password, "sweetbabyboo")
+        self.user1.save()
+        self.user2 = User("Abigail", "Fitsum", "sweetabbybaee", "abbybaeeehabesha")
+        self.user2.save()
+        self.assertEqual(len(User.user_accounts), 2)
 
     def test_listUserAccounts(self):
         """Test list all user accounts"""
-        accounts = self.user1.listUserAccounts()
-        self.assertEqual(len(accounts), 1)
+        accounts = User.listUserAccounts()
+        self.assertEqual(len(accounts), 2)
 
     def test_getUser(self):
         """Test get a user account by username"""
@@ -64,7 +64,7 @@ class TestUser(unittest.TestCase):
     def test_delete(self):
         """Test delete an existing user account"""
         self.user1.deleteUser("beautifulaklisiya")
-        self.assertEqual(len(self.user1.user_accounts), 0)
+        self.assertEqual(len(User.user_accounts), 1)
 
 
 class TestCredentials(unittest.TestCase):

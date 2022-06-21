@@ -16,9 +16,9 @@ def main():
             first_name = input("First Name:.......")
             last_name = input("Last Name:.......")
             username = input("Username:.......")
-            password = input("Password:.......")
+            passcode = input("Password:.......")
 
-            User.save(User.addUser(first_name, last_name, username, password))
+            User.save(User.addUser(first_name, last_name, username, passcode))
             print(f"New contact {first_name} {last_name} successfully created.")
             print()
 

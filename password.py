@@ -10,10 +10,10 @@ class User:
         self.password = password
         self.user_credentials = dict()
 
-    def addUser(self, first_name, last_name, username, password):
+    def addUser(first_name, last_name, username, password):
         """Add a new user account"""
-        self.user1 = User(first_name, last_name, username, password)
-        return self.user1
+        user1 = User(first_name, last_name, username, password)
+        return user1
 
     def save(self):
         """Save user account"""
