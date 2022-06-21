@@ -21,8 +21,16 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user1.username, "beautifulaklisiya")
         self.assertEqual(self.user1.password, "sweetbabyboo")
 
-    def test_viewAccounts(self):
-        """Test view all user accounts"""
+    def test_addUser(self):
+        """Test add a new user account"""
+        self.user1 = User("Aklisiya", "Eshetu", "beautifulaklisiya", "sweetbabyboo")
+        self.assertEqual(self.user1.first_name, "Aklisiya")
+        self.assertEqual(self.user1.last_name, "Eshetu")
+        self.assertEqual(self.user1.username, "beautifulaklisiya")
+        self.assertEqual(self.user1.password, "sweetbabyboo")
+
+    def test_listUserAccounts(self):
+        """Test list all user accounts"""
         accounts = self.user1.listUserAccounts()
         self.assertEqual(len(accounts), 1)
 

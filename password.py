@@ -10,6 +10,11 @@ class User:
         self.password = password
         self.user_credentials = dict()
 
+    def addUser(self, first_name, last_name, username, password):
+        """Add a new user account"""
+        self.user1 = User(first_name, last_name, username, password)
+        return self.user1
+
     def save(self):
         """Save user account"""
         self.user_accounts[self.username] = {
@@ -23,9 +28,9 @@ class User:
         """Get user by username"""
         return self.user_accounts.get(username)
 
-    def listUserAccounts(self):
+    def listUserAccounts():
         """View all user accounts"""
-        return self.user_accounts.items()
+        return User.user_accounts.items()
 
     def addCredential(self, credential):
         """Add a new user credential"""
