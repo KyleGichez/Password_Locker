@@ -21,7 +21,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user1.username, "beautifulaklisiya")
         self.assertEqual(self.user1.password, "sweetbabyboo")
 
-    def test_addUser(self):
+    def test_AddUser(self):
         """Test add a new user account"""
         self.user1 = User("Aklisiya", "Eshetu", "beautifulaklisiya", "sweetbabyboo")
         self.user1.save()
@@ -29,41 +29,41 @@ class TestUser(unittest.TestCase):
         self.user2.save()
         self.assertEqual(len(User.user_accounts), 2)
 
-    def test_listUserAccounts(self):
+    def test_ListUserAccounts(self):
         """Test list all user accounts"""
-        accounts = User.listUserAccounts()
+        accounts = User.ListUserAccounts()
         self.assertEqual(len(accounts), 2)
 
-    def test_getUser(self):
+    def test_GetUser(self):
         """Test get a user account by username"""
-        account = self.user1.getByUserName("beautifulaklisiya")
+        account = self.user1.GetByUserName("beautifulaklisiya")
         self.assertEqual(self.user1.username, "beautifulaklisiya")
         return account
 
     def test_addCredential(self):
         """Test save a new credential"""
         credential_1 = Credentials("Tiktok", "eshetubabyhabesha", "sexybaby")
-        self.user1.addCredential(credential_1)
+        self.user1.AddCredential(credential_1)
         self.assertEqual(len(self.user1.user_credentials.items()), 1)
 
     def test_listCredentials(self):
         """Test list all user credentials"""
         credential_1 = Credentials("Tiktok", "eshetubabyhabesha", "sexybaby")
-        self.user1.addCredential(credential_1)
+        self.user1.AddCredential(credential_1)
         result = self.user1.user_credentials.items()
-        self.user1.listCredentials()
+        self.user1.ListCredentials()
         self.assertTrue(result)
 
-    def test_deleteCredential(self):
+    def test_DeleteCredential(self):
         """Test delete an existing credential"""
         credential_1 = Credentials("Tiktok", "eshetubabyhabesha", "sexybaby")
-        self.user1.addCredential(credential_1)
-        self.user1.deleteCredential("Tiktok")
+        self.user1.AddCredential(credential_1)
+        self.user1.DeleteCredential("Tiktok")
         self.assertEqual(len(self.user1.user_credentials.items()), 0)
 
-    def test_delete(self):
+    def test_Delete(self):
         """Test delete an existing user account"""
-        self.user1.deleteUser("beautifulaklisiya")
+        self.user1.DeleteUser("beautifulaklisiya")
         self.assertEqual(len(User.user_accounts), 1)
 
 
@@ -78,12 +78,12 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.user1.username, "aklisiyababy")
         self.assertEqual(self.user1.password, "eshetuhabesha")
 
-    def test_randomPassword(self):
+    def test_RandomPassword(self):
         """Test random password"""
         random_password = self.user1.password
         self.assertEqual(self.user1.password, random_password)
 
-    def test_newPassword(self):
+    def test_NewPassword(self):
         """Test new password"""
         self.user1 = Credentials("Tiktok", "aklisiyababy", "babyaklisiya1")
         new_password = self.user1.password

@@ -10,11 +10,6 @@ class User:
         self.password = password
         self.user_credentials = dict()
 
-    def addUser(first_name, last_name, username, password):
-        """Add a new user account"""
-        user1 = User(first_name, last_name, username, password)
-        return user1
-
     def save(self):
         """Save user account"""
         self.user_accounts[self.username] = {
@@ -22,15 +17,18 @@ class User:
             'last_name': self.last_name,
             'password': self.password
         }
-        return True
-
-    def getByUserName(self, username):
+        return self or None
+    
+    @classmethod
+    def getByUserName(cls, username):
         """Get user by username"""
-        return self.user_accounts.get(username)
-
-    def listUserAccounts():
+        account = cls.user_accounts.get(username)
+        return account
+    
+    @classmethod
+    def listUserAccounts(cls):
         """View all user accounts"""
-        return User.user_accounts.items()
+        return cls.user_accounts.items()
 
     def addCredential(self, credential):
         """Add a new user credential"""
@@ -48,10 +46,11 @@ class User:
     def listCredentials(self):
         """List all user credentials"""
         return [f"Your {credential[0]} username for {self.first_name} is {credential[1].get('username')}." for credential in self.user_credentials.items() if credential]
-
-    def deleteUser(self, username):
+    
+    @classmethod
+    def deleteUser(cls, username):
         """Delete an existing user account"""
-        self.user_accounts.pop(username)
+        cls.user_accounts.pop(username)
         return True
 
 
