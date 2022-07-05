@@ -11,6 +11,7 @@ class User:
         self.user_credentials = dict()
 
     def checkPasswordMatch(self, password):
+        """Check if passwords match for login"""
         if password == self.password:
             return True
         else:
@@ -62,12 +63,6 @@ class Credentials:
         self.site = site
         self.username = username
         self.password = password
-
-    def save(self):
-        self.site = {
-            'username' : self.username,
-            'password' : self.password
-        }
 
     def createRandomPassword(self, length=10):
         """create a random password"""
