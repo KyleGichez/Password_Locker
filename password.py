@@ -10,13 +10,15 @@ class User:
         self.password = password
         self.user_credentials = dict()
 
+    def checkPasswordMatch(self, password):
+        if password == self.password:
+            return True
+        else:
+            return False
+
     def save(self):
         """Save user account"""
-        self.user_accounts[self.username] = {
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'password': self.password
-        }
+        self.user_accounts[self.username] = self
         return self or None
     
     @classmethod
@@ -45,8 +47,8 @@ class User:
 
     def listCredentials(self):
         """List all user credentials"""
-        return [f"Your {credential[0]} username for {self.first_name} is {credential[1].get('username')}." for credential in self.user_credentials.items() if credential]
-    
+        return [f"Your {credential[0]} username is {credential[1].get('username')}." for credential in self.user_credentials.items() if credential]
+
     @classmethod
     def deleteUser(cls, username):
         """Delete an existing user account"""
@@ -60,6 +62,12 @@ class Credentials:
         self.site = site
         self.username = username
         self.password = password
+
+    def save(self):
+        self.site = {
+            'username' : self.username,
+            'password' : self.password
+        }
 
     def createRandomPassword(self, length=10):
         """create a random password"""
