@@ -25,7 +25,7 @@ def main():
             break
         else:
             print("You entered an invalid short code, please try again.")
-            break
+            pass
 
     while current_user:
         print()
