@@ -19,6 +19,7 @@ git clone  https://github.com/KyleGichez/Password_Locker.git
 Also, you can choose to download this project to your local working environment as a zip folder when you click the green code button in this repository.
 
 ### Set-up
+On your terminal run the following command:
 ````Set-up 
 $ python3 run.py
 ````
